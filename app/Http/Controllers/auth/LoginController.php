@@ -61,6 +61,7 @@ class LoginController extends Controller
     public function sendCode(Request $request)
     {
 
+
         $response = [];
 
         $mobile = $request->input('mobile');
@@ -78,6 +79,7 @@ class LoginController extends Controller
             ];
 
             $two_factor = TwoFactorAuthentication::where('mobile', $user->mobile)->first();
+
 
             if ($two_factor instanceof TwoFactorAuthentication) {
 

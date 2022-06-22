@@ -27,6 +27,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'admin','middleware' => 'auth'
     // GeoTechnics Routes
     Route::group(['prefix' => 'geotechnics'], function () {
         Route::get('/create', 'GeoTechnicsController@create')->name('admin.geotechnics.create');
+        Route::post('/store','GeoTechnicsController@store')->name('admin.geotechnics.store');
     });
 
 });

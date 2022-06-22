@@ -97,11 +97,11 @@
 
 
         @if(session('code-failed'))
-            Swal.fire({
-                icon: 'error',
-                title: 'خطا !',
-                text: "{{session('code-failed')}}",
-            })
+        Swal.fire({
+            icon: 'error',
+            title: 'خطا !',
+            text: "{{session('code-failed')}}",
+        })
         @endif
 
         $(document).ready(function () {
@@ -145,5 +145,8 @@
             });
         });
     </script>
+
+
+
 @endsection
 

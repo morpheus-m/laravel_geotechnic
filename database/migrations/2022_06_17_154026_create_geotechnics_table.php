@@ -39,6 +39,9 @@ class CreateGeotechnicsTable extends Migration
             $table->enum('bedrock',['yes','no']);
             $table->enum('drilling_surcharge',['yes','no']);
             $table->enum('number_of_payment',['Cash','One_Installment','Two_Installment','Three_Installment']);
+            $table->integer('cost_of_studies');
+            $table->integer('cost_of_membership');
+            $table->integer('total_cost');
             $table->timestamps();
         });
     }

@@ -10,7 +10,7 @@
     "use strict";
 
     var AdvancedForm = function() {};
-    
+
     AdvancedForm.prototype.init = function() {
         //creating various controls
 
@@ -129,6 +129,16 @@
             buttonup_class: 'btn btn-primary'
         });
         $("input[name='demo0']").TouchSpin({
+            buttondown_class: 'btn btn-primary',
+            buttonup_class: 'btn btn-primary'
+        });
+
+        $("input[name='number_of_machine_boreholes']").TouchSpin({
+            buttondown_class: 'btn btn-primary',
+            buttonup_class: 'btn btn-primary'
+        });
+
+        $("input[name='number_of_manual_wells']").TouchSpin({
             buttondown_class: 'btn btn-primary',
             buttonup_class: 'btn btn-primary'
         });
