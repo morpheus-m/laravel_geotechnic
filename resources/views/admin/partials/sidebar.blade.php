@@ -42,7 +42,7 @@
                         <li><a href="{{route('admin.geotechnics.create')}}">ثبت پرونده ژئو تکنیک</a></li>
                         <li><a href="/pages/wellding/create">ثبت پرونده جوش</a></li>
                         <li><a href="/pages/concrete/create">ثبت پرونده بتن</a></li>
-                        <li><a href="panel-Registered.html">پرونده های ثبت شده</a></li>
+                        <li><a href="{{route('admin.geotechnics')}}">پرونده های ثبت شده</a></li>
 
                     </ul>
                 </li>

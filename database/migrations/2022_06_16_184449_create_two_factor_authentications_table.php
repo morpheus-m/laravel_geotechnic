@@ -17,7 +17,7 @@ class CreateTwoFactorAuthenticationsTable extends Migration
             $table->id();
             $table->string('mobile')->unique();
             $table->char('code',4)->unique();
-            $table->enum('type',['users']);
+            $table->enum('type',['user','owner']);
             $table->dateTime('expire_at')->nullable();
             $table->timestamps();
         });

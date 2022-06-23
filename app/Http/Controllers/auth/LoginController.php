@@ -5,11 +5,13 @@ namespace App\Http\Controllers\auth;
 use App\Http\Controllers\Controller;
 use App\Models\TwoFactorAuthentication;
 use App\Models\User;
+use App\Traits\SendSms;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
+    use SendSms;
     public function loginForm()
     {
         return view('auth.login');
@@ -91,7 +93,8 @@ class LoginController extends Controller
                 TwoFactorAuthentication::create($data);
 
 
-            if ($this->sendSms($data)) {
+            $message = " کد تائید ورود به سامانه انجمن صنفی ژئوتکنیک : $code";
+            if ($this->sendSms([$user->mobile],$message)) {
 
                 $response = [
                     'status' => 1,
@@ -119,43 +122,42 @@ class LoginController extends Controller
 
     }
 
-    private function generateCode()
-    {
-        $code = "";
-        do {
-            $code = rand(1000, 9999);
-        } while (TwoFactorAuthentication::where('code', $code)->first());
-
-        return $code;
-    }
-
-    private function sendSms($data)
-    {
-        $url = "https://ippanel.com/services.jspd";
-
-        $rcpt_nm = array($data['mobile']);
-        $param = array
-        (
-            'uname' => 'hhaaddii4303',
-            'pass' => 'Hadi43003',
-            'from' => '+9890000145',
-            'message' => " کد تائید ورود به سامانه انجمن صنفی ژئوتکنیک : {$data['code']}",
-            'to' => json_encode($rcpt_nm),
-            'op' => 'send',
-        );
-
-        $handler = curl_init($url);
-        curl_setopt($handler, CURLOPT_CUSTOMREQUEST, "POST");
-        curl_setopt($handler, CURLOPT_POSTFIELDS, $param);
-        curl_setopt($handler, CURLOPT_RETURNTRANSFER, true);
-        $response = curl_exec($handler);
-
-        $response = json_decode($response);
-        $res_code = $response[0];
-        $res_data = $response[1];
-
-        return ($res_code == 0) ? true : false;
-
-    }
+//    private function generateCode()
+//    {
+//        $code = "";
+//        do {
+//            $code = rand(1000, 9999);
+//        } while (TwoFactorAuthentication::where('code', $code)->first());
+//
+//        return $code;
+//    }
+//    private function sendSms($data)
+//    {
+//        $url = "https://ippanel.com/services.jspd";
+//
+//        $rcpt_nm = array($data['mobile']);
+//        $param = array
+//        (
+//            'uname' => 'hhaaddii4303',
+//            'pass' => 'Hadi43003',
+//            'from' => '+9890000145',
+//            'message' => " کد تائید ورود به سامانه انجمن صنفی ژئوتکنیک : {$data['code']}",
+//            'to' => json_encode($rcpt_nm),
+//            'op' => 'send',
+//        );
+//
+//        $handler = curl_init($url);
+//        curl_setopt($handler, CURLOPT_CUSTOMREQUEST, "POST");
+//        curl_setopt($handler, CURLOPT_POSTFIELDS, $param);
+//        curl_setopt($handler, CURLOPT_RETURNTRANSFER, true);
+//        $response = curl_exec($handler);
+//
+//        $response = json_decode($response);
+//        $res_code = $response[0];
+//        $res_data = $response[1];
+//
+//        return ($res_code == 0) ? true : false;
+//
+//    }
 
 }

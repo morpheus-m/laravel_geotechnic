@@ -18,9 +18,9 @@ class CreateInstallmentsTable extends Migration
 
             $table->bigInteger('geotechnic_id')->unsigned()->nullable();
             $table->foreign('geotechnic_id')->references('id')->on('geotechnics')->cascadeOnDelete();
-
             $table->string('title',30);
             $table->integer('amount');
+            $table->string('type');
             $table->enum('status',['Paid','Unpaid','Expired']);
 
             $table->timestamps();

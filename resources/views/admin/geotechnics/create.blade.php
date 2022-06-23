@@ -135,7 +135,7 @@
                                                 </label>
                                                 <input class="form-control" type="number"
                                                        name="number_of_floors"
-                                                       value="{{old('number_of_floors')}}}"
+                                                       value="{{old('number_of_floors')}}"
                                                        id="example-number-input">
                                             </div>
                                             <div class="col-sm-4" style="padding-top: 20px">

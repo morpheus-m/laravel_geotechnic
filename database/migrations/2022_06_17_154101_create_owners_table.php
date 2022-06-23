@@ -15,6 +15,15 @@ class CreateOwnersTable extends Migration
     {
         Schema::create('owners', function (Blueprint $table) {
             $table->id();
+
+            $table->unsignedBigInteger('geotechnic_id')->nullable();
+            $table->foreign('geotechnic_id')->references('id')->on('geotechnics')->nullOnDelete();
+            $table->string('f_name',30);
+            $table->string('l_name',50);
+            $table->string('code_melli');
+            $table->string('mobile');
+            $table->text('address')->nullable();
+            $table->integer('registration_plate');
             $table->timestamps();
         });
     }
