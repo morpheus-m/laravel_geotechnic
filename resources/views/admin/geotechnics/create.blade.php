@@ -83,7 +83,7 @@
                 </div>
             </div>
         </div>
-
+        @include('layout.alert')
 
         <div class="col-lg-12 col-md-12 col-sm-12 p-0">
             <div style="padding-right: 20px;padding-left: 20px;font-size: larger">
@@ -325,53 +325,85 @@
                                                 <label>سازه نگهبان
                                                     <span class="text-danger" > * </span>
                                                 </label>
-                                                <select class="custom-select" name="guard_structure" aria-label="guard_structure">
+                                                <select class="custom-select" name="guard_structure"
+                                                        aria-label="guard_structure"
+                                                @error('guard_structure')
+                                                    style="border: 1px solid #dc3545"
+                                                @enderror>
                                                     <option selected>انتخاب کنید</option>
                                                     <option value="yes">دارد</option>
                                                     <option value="no">ندارد</option>
                                                 </select>
+                                                @error('guard_structure')
+                                                    <span style="font-size: 12px;font-weight: bold;color: #dc3545">{{$message}}</span>
+                                                @enderror
                                             </div>
                                             <div class="col-sm-3" style="padding-top: 20px">
                                                 <label>بارگزاری و برش برجا
                                                   <span class="text-danger" > * </span>
                                                 </label>
                                                 <select class="custom-select" aria-label="upload_and_cut_in_place"
-                                                        name="upload_and_cut_in_place">
+                                                        name="upload_and_cut_in_place"
+                                                        @error('upload_and_cut_in_place')
+                                                        style="border: 1px solid #dc3545"
+                                                    @enderror>
                                                     <option selected>انتخاب کنید</option>
                                                     <option value="yes">دارد</option>
                                                     <option value="no">ندارد</option>
                                                 </select>
+                                                @error('upload_and_cut_in_place')
+                                                <span style="font-size: 12px;font-weight: bold;color: #dc3545">{{$message}}</span>
+                                                @enderror
                                             </div>
                                             <div class="col-sm-3" style="padding-top: 20px">
                                                 <label>تست لرزه درون چاهی
                                                   <span class="text-danger" > * </span>
                                                 </label>
                                                 <select class="custom-select" aria-label="in_well_vibration_test"
-                                                        name="in_well_vibration_test">
+                                                        name="in_well_vibration_test"
+                                                        @error('in_well_vibration_test')
+                                                        style="border: 1px solid #dc3545"
+                                                    @enderror>
                                                     <option selected>انتخاب کنید</option>
                                                     <option value="yes">دارد</option>
                                                     <option value="no">ندارد</option>
                                                 </select>
+                                                @error('in_well_vibration_test')
+                                                <span style="font-size: 12px;font-weight: bold;color: #dc3545">{{$message}}</span>
+                                                @enderror
                                             </div>
                                             <div class="col-sm-3" style="padding-top: 20px">
                                                 <label>بستر سنگی
                                                   <span class="text-danger" > * </span>
                                                 </label>
-                                                <select class="custom-select" name="bedrock" aria-label="bedrock">
+                                                <select class="custom-select" name="bedrock" aria-label="bedrock"
+                                                        @error('bedrock')
+                                                        style="border: 1px solid #dc3545"
+                                                    @enderror>
                                                     <option selected>انتخاب کنید</option>
                                                     <option value="yes">بله</option>
                                                     <option value="no">خیر</option>
                                                 </select>
+                                                @error('bedrock')
+                                                <span style="font-size: 12px;font-weight: bold;color: #dc3545">{{$message}}</span>
+                                                @enderror
                                             </div>
                                             <div class="col-sm-3" style="padding-top: 20px">
                                                 <label>اضافه بهای حفاری
                                                   <span class="text-danger" > * </span>
                                                 </label>
-                                                <select class="custom-select" name="drilling_surcharge" aria-label="drilling_surcharge">
+                                                <select class="custom-select" name="drilling_surcharge"
+                                                        aria-label="drilling_surcharge"
+                                                        @error('drilling_surcharge')
+                                                        style="border: 1px solid #dc3545"
+                                                    @enderror>
                                                     <option selected>انتخاب کنید</option>
                                                     <option value="yes">دارد</option>
                                                     <option value="no">ندارد</option>
                                                 </select>
+                                                @error('drilling_surcharge')
+                                                <span style="font-size: 12px;font-weight: bold;color: #dc3545">{{$message}}</span>
+                                                @enderror
                                             </div>
                                             <div class="col-sm-3" style="padding-top: 20px">
                                                 <label>تعداد اقساط پرداخت

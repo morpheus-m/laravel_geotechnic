@@ -45,7 +45,6 @@ class GeoTechnicsController extends Controller
         $this->validateForm($request);
 
 
-
         // check upload files
 //        $written_request_of_bore_number = "";
 //        if($request->has('written_request_of_bore_number'))
@@ -53,8 +52,6 @@ class GeoTechnicsController extends Controller
 //
 //            $written_request_of_bore_number = $this->uploadFile('/geotechnics/documents','');
 //        }
-
-
 
 
         $data = [
@@ -116,7 +113,7 @@ class GeoTechnicsController extends Controller
             'registration_plate' => ['required'],
             'code' => ['required', Rule::exists('two_factor_authentications', 'code')->where('type', 'owner')]
         ], [
-            '*.required' => 'فیلد الرامی است',
+            '*.required' => 'فیلد :attribute الرامی است',
             'code.exists' => 'کد وارد شده صحیح نمیباشد',
         ]);
 
@@ -150,19 +147,23 @@ class GeoTechnicsController extends Controller
             'number_of_floors' => ['required'],
             'occupancy_level_downstairs' => ['required'],
             'number_of_underground_floors' => ['required'],
-            'number_of_machine_boreholes' => ['required'],
+            'number_of_machine_boreholes' => ['required','gt:0'],
             'machine_bore_depth' => ['required_if:bedrock,no'],
             'number_of_manual_wells' => ['required'],
-            'manual_well_depth' => ['required'],
-            'guard_structure' => ['required'],
-            'upload_and_cut_in_place' => ['required'],
-            'in_well_vibration_test' => ['required'],
-            'bedrock' => ['required'],
-            'drilling_surcharge' => ['required'],
+            'manual_well_depth' => ['required_unless:number_of_manual_wells,0'],
+            'guard_structure' => ['required',Rule::in(['yes','no'])],
+            'upload_and_cut_in_place' => ['required',Rule::in(['yes','no'])],
+            'in_well_vibration_test' => ['required',Rule::in(['yes','no'])],
+            'bedrock' => ['required',Rule::in(['yes','no'])],
+            'drilling_surcharge' => ['required',Rule::in(['yes','no'])],
             'number_of_payment' => ['required'],
-        ],[
-            '*.required' => 'فیلد الزامی است',
-            'type_of_land.in' => 'مقدار فیلد صحیح نمیباشد'
+        ], [
+            '*.required' => 'فیلد :attribute الزامی است',
+            '*.in' => 'یکی از گزینه ها را انتخاب کنید',
+            'type_of_land.in' => 'مقدار فیلد صحیح نمیباشد',
+            ''
+        ], [
+            'manual_well_depth' => 'عمق چاهک دستی'
         ]);
 
     }
@@ -199,8 +200,13 @@ class GeoTechnicsController extends Controller
         elseif ($data['bedrock'] == 'no')
             $cost_of_membership += array_sum($data['machine_bore_depth']) * $this->getLandPriceByType($data['type_of_land']);
 
+
         // #2
-        $cost_of_membership += array_sum($data['machine_bore_depth']) * 250000;
+        if (!is_null($data['manual_well_depth'])) {
+
+            $cost_of_membership += array_sum($data['manual_well_depth']) * 250000;
+        }
+
 
         // #3
         if ($data['in_well_vibration_test'] == 'yes')
