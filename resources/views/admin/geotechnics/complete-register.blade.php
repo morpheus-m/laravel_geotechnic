@@ -251,7 +251,7 @@
                                                         <div class="p-3 mini-stat-desc">
                                                             <div class="clearfix">
                                                                 <h6 class="text-uppercase mt-0 float-left text-white-50">{{$studies['title']}}</h6>
-                                                                <h4 class="mb-3 mt-0 float-right">{{number_format($studies['amount'])}}</h4>
+                                                                <h4 class="mb-3 mt-0 float-right" style="font-size:22px">{{number_format($studies['amount'])}}</h4>
                                                             </div>
                                                             <div>
                                                                 <span class="badge badge-light text-info"> {{number_format(($studies['amount'] * 100) / $geotechnic['cost_of_studies'],2)}}% </span>
@@ -292,7 +292,7 @@
                                                         <div class="p-3 mini-stat-desc">
                                                             <div class="clearfix">
                                                                 <h6 class="text-uppercase mt-0 float-left text-white-50">{{$membership['title']}}</h6>
-                                                                <h4 class="mb-3 mt-0 float-right">{{number_format($membership['amount'])}}</h4>
+                                                                <h4 class="mb-3 mt-0 float-right" style="font-size:22px">{{number_format($membership['amount'])}}</h4>
                                                             </div>
                                                             <div>
                                                                 <span class="badge badge-light text-info"> {{number_format(($membership['amount'] * 100) / $geotechnic['cost_of_membership'],2)}}% % </span>

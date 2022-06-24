@@ -24,6 +24,8 @@
     <link href="{{asset('admin/assets/plugins/bootstrap-touchspin/css/jquery.bootstrap-touchspin.min.css')}}"
           rel="stylesheet"/>
 
+    <link rel="stylesheet" href="{{asset('admin/assets/css/jquery.dataTables.min.css')}}">
+
     <link href="{{asset('admin/assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('admin/assets/css/icons.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('admin/assets/css/style.css')}}" rel="stylesheet" type="text/css">
@@ -36,17 +38,17 @@
 <body class="fixed-left">
 
 <!-- Loader -->
-<div id="preloader">
-    <div id="status">
-        <div class="spinner">
-            <div class="rect1"></div>
-            <div class="rect2"></div>
-            <div class="rect3"></div>
-            <div class="rect4"></div>
-            <div class="rect5"></div>
-        </div>
-    </div>
-</div>
+{{--<div id="preloader">--}}
+{{--    <div id="status">--}}
+{{--        <div class="spinner">--}}
+{{--            <div class="rect1"></div>--}}
+{{--            <div class="rect2"></div>--}}
+{{--            <div class="rect3"></div>--}}
+{{--            <div class="rect4"></div>--}}
+{{--            <div class="rect5"></div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
+{{--</div>--}}
 
 <!-- Begin page -->
 <div id="wrapper">
@@ -86,6 +88,9 @@
 <script src="{{asset('admin/assets/js/waves.js')}}"></script>
 <script src="{{asset('admin/assets/js/jquery.nicescroll.js')}}"></script>
 <script src="{{asset('admin/assets/js/jquery.scrollTo.min.js')}}"></script>
+
+{{--<script src="{{asset('admin/assets/js/jquery-3.5.1.js')}}"></script>--}}
+{{--<script src="{{asset('admin/assets/js/jquery.dataTables.min.js')}}"></script>--}}
 
 
 <!--Morris Chart-->

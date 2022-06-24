@@ -123,76 +123,66 @@
                         </div>
                     </div>
                     <div class="col-12">
-                        <div class="card m-b-30">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="row" style="padding-right: 20px;padding-left: 20px">
-                                            <div class="col-12">
-                                                <div class="card m-b-30">
-                                                    <div class="card-body">
-                                                        <div class="row">
-                                                            <div class="col-lg-12">
-                                                                <table id="datatable"
-                                                                       class="table table-bordered dt-responsive nowrap"
-                                                                       style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                                                    <thead>
-                                                                    <tr>
-                                                                        <th>ردیف</th>
-                                                                        <th> شماره ثبت دستور نقشه </th>
-                                                                        <th>شماره تماس مالک</th>
-                                                                        <th>متراژ کل بنا</th>
-                                                                        <th>نوع زمین</th>
+                        <div class="col-12">
+                            <div class="card m-b-30">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <table id="datatable"
+                                                   class="table table-bordered dt-responsive nowrap"
+                                                   style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                                <thead>
+                                                <tr>
+                                                    <th>ردیف</th>
+                                                    <th> شماره ثبت دستور نقشه </th>
+                                                    <th>شماره تماس مالک</th>
+                                                    <th>متراژ کل بنا</th>
+                                                    <th>نوع زمین</th>
 
-                                                                        <th>تعداد اقساط</th>
-                                                                        <th>هزینه کل</th>
-                                                                        <th>تاریخ ثبت</th>
+                                                    <th>تعداد اقساط</th>
+                                                    <th>هزینه کل</th>
+                                                    <th>تاریخ ثبت</th>
 
-                                                                        <th>اقدامات</th>
-                                                                    </tr>
-                                                                    </thead>
+                                                    <th>اقدامات</th>
+                                                </tr>
+                                                </thead>
 
 
-                                                                    <tbody>
-                                                                    @foreach($geotechnics as $key => $geotechnic)
-                                                                        <tr>
-                                                                            <td>{{ ++$key }}</td>
-                                                                            <td>{{$geotechnic->map_registration_number}}</td>
-                                                                            <td>{{$geotechnic->owner->mobile}}</td>
-                                                                            <td>{{$geotechnic->total_building_area}}</td>
-                                                                            <td>{{$geotechnic->land()}}</td>
-                                                                            <td>{{count($geotechnic->installments) . ' قسط '}}</td>
-                                                                            <td>{{number_format($geotechnic->total_cost)}} تومان</td>
+                                                <tbody>
+                                                @foreach($geotechnics as $key => $geotechnic)
+                                                    <tr>
+                                                        <td>{{ ++$key }}</td>
+                                                        <td>{{$geotechnic->map_registration_number}}</td>
+                                                        <td>{{$geotechnic->owner->mobile}}</td>
+                                                        <td>{{$geotechnic->total_building_area}}</td>
+                                                        <td>{{$geotechnic->land()}}</td>
+                                                        <td>{{count($geotechnic->installments) . ' قسط '}}</td>
+                                                        <td>{{number_format($geotechnic->total_cost)}} تومان</td>
 
-                                                                            <td>{{$geotechnic->created_at}}</td>
-                                                                            <td>
-                                                                                <div class="text-center">
-                                                                                    <button type="button"
-                                                                                            class="btn btn-primary waves-effect waves-light"
-                                                                                            data-toggle="modal"
-                                                                                            data-target=".bs-example-modal-center">
-                                                                                        مشاهده جزئیات
-                                                                                    </button>
-                                                                                    <button type="button"
-                                                                                            class="btn btn-purple waves-effect waves-light"
-                                                                                            data-toggle="modal"
-                                                                                            data-target=".bs-example-modal-center">
-                                                                                        مشاهده اقساط
-                                                                                    </button>
-                                                                                </div>
-                                                                            </td>
-                                                                        </tr>
-                                                                    @endforeach
-                                                                    </tbody>
-                                                                </table>
+                                                        <td>{{$geotechnic->created_at}}</td>
+                                                        <td>
+                                                            <div class="text-center">
+                                                                <button type="button"
+                                                                        class="btn btn-primary waves-effect waves-light"
+                                                                        data-toggle="modal"
+                                                                        data-target=".bs-example-modal-center">
+                                                                    مشاهده جزئیات
+                                                                </button>
+                                                                <button type="button"
+                                                                        class="btn btn-purple waves-effect waves-light"
+                                                                        data-toggle="modal"
+                                                                        data-target=".bs-example-modal-center">
+                                                                    مشاهده اقساط
+                                                                </button>
                                                             </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
-                                </div> <!-- end row -->
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -207,6 +197,19 @@
 @section('scripts')
 
     <script>
+        var $  = require( 'jquery' );
+        var dt = require( 'datatables.net' )();
+
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('#example').DataTable();
+        });
+
+    </script>
+
+    <script>
         @if(session('geotechnic-created-success'))
         Swal.fire({
             icon: 'success',
@@ -216,5 +219,7 @@
         @endif
 
     </script>
+
+
 @endsection
 

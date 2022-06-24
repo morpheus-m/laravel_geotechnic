@@ -210,7 +210,7 @@
                     </div>
                 </div>
                 <div class="row" style="padding-right: 20px;padding-left: 20px">
-                    <div class="col-xl-6">
+                    <div class="col-xl-6 col-lg-6 col-md-6">
                         <div class="card m-b-30">
                             <div class="card-body">
 
@@ -304,7 +304,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-6">
+                    <div class="col-xl-6 col-lg-6 col-md-6">
                         <div class="card m-b-30">
                             <div class="card-body">
                                 <div class="col-sm-12" style="padding-top: 20px">
