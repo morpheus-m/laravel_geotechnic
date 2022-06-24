@@ -83,9 +83,6 @@
                 </div>
             </div>
         </div>
-        @include('layout.alert')
-
-
 
         <div class="col-lg-12 col-md-12 col-sm-12 p-0">
             <div style="padding-right: 20px;padding-left: 20px;font-size: larger">
@@ -115,7 +112,8 @@
                                                        value="{{old('map_registration_number')}}"
                                                        id="example-number-input">
                                                 @error('map_registration_number')
-                                                    <span style="font-size: 12px;font-weight: bold;color: #dc3545">{{$message}}</span>
+                                                <span
+                                                    style="font-size: 12px;font-weight: bold;color: #dc3545">{{$message}}</span>
                                                 @enderror
                                             </div>
                                             <div class="col-sm-4" style="padding-top: 20px">
@@ -130,7 +128,8 @@
                                                        value="{{old('map_registration_number')}}"
                                                        id="example-number-input">
                                                 @error('total_building_area')
-                                                <span style="font-size: 12px;font-weight: bold;color: #dc3545">{{$message}}</span>
+                                                <span
+                                                    style="font-size: 12px;font-weight: bold;color: #dc3545">{{$message}}</span>
                                                 @enderror
                                             </div>
                                             <div class="col-sm-4" style="padding-top: 20px">
@@ -147,7 +146,8 @@
                                                     @endforeach
                                                 </select>
                                                 @error('type_of_land')
-                                                <span style="font-size: 12px;font-weight: bold;color: #dc3545">{{$message}}</span>
+                                                <span
+                                                    style="font-size: 12px;font-weight: bold;color: #dc3545">{{$message}}</span>
                                                 @enderror
                                             </div>
                                             <div class="col-sm-4" style="padding-top: 20px">
@@ -162,7 +162,8 @@
                                                        value="{{old('number_of_floors')}}"
                                                        id="example-number-input">
                                                 @error('number_of_floors')
-                                                <span style="font-size: 12px;font-weight: bold;color: #dc3545">{{$message}}</span>
+                                                <span
+                                                    style="font-size: 12px;font-weight: bold;color: #dc3545">{{$message}}</span>
                                                 @enderror
                                             </div>
                                             <div class="col-sm-4" style="padding-top: 20px">
@@ -178,7 +179,8 @@
                                                        value="{{old('occupancy_level_downstairs')}}"
                                                        id="example-number-input">
                                                 @error('occupancy_level_downstairs')
-                                                <span style="font-size: 12px;font-weight: bold;color: #dc3545">{{$message}}</span>
+                                                <span
+                                                    style="font-size: 12px;font-weight: bold;color: #dc3545">{{$message}}</span>
                                                 @enderror
                                             </div>
                                             <div class="col-sm-4" style="padding-top: 20px">
@@ -194,7 +196,8 @@
                                                        value="{{old('number_of_underground_floors')}}"
                                                        id="example-number-input">
                                                 @error('number_of_underground_floors')
-                                                <span style="font-size: 12px;font-weight: bold;color: #dc3545">{{$message}}</span>
+                                                <span
+                                                    style="font-size: 12px;font-weight: bold;color: #dc3545">{{$message}}</span>
                                                 @enderror
                                             </div>
 
@@ -301,15 +304,11 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="col-xl-6">
                         <div class="card m-b-30">
                             <div class="card-body">
-
-
                                 <div class="col-sm-12" style="padding-top: 20px">
                                     <label class="control-label">تعداد چاهک دستی
-
                                     </label>
                                     <input id="manual_wells_count" type="text" value="0" name="number_of_manual_wells"
                                            data-bts-min="0" aria-label="number_of_manual_wells"
@@ -406,24 +405,42 @@
                                                         style="border: 1px solid #dc3545"
                                                     @enderror>
                                                     <option selected>انتخاب کنید</option>
-                                                    <option value="yes" {{(old('guard_structure') == 'yes')? 'selected' : ''}}>دارد</option>
-                                                    <option value="no" {{(old('guard_structure') == 'no')? 'selected' : ''}}>ندارد</option>
+                                                    <option
+                                                        value="yes" {{(old('guard_structure') == 'yes')? 'selected' : ''}}>
+                                                        دارد
+                                                    </option>
+                                                    <option
+                                                        value="no" {{(old('guard_structure') == 'no')? 'selected' : ''}}>
+                                                        ندارد
+                                                    </option>
                                                 </select>
                                                 @error('guard_structure')
-                                                <span style="font-size: 12px;font-weight: bold;color: #dc3545">{{$message}}</span>
+                                                <span
+                                                    style="font-size: 12px;font-weight: bold;color: #dc3545">{{$message}}</span>
                                                 @enderror
+                                            </div>
                                             <div class="col-sm-3" style="padding-top: 20px">
+                                                <label>بارگزاری و برش برجا
+                                                    <span class="text-danger"> * </span>
+                                                </label>
                                                 <select class="custom-select" aria-label="upload_and_cut_in_place"
                                                         name="upload_and_cut_in_place"
                                                         @error('upload_and_cut_in_place')
                                                         style="border: 1px solid #dc3545"
                                                     @enderror>
                                                     <option selected>انتخاب کنید</option>
-                                                    <option value="yes" {{(old('upload_and_cut_in_place') == 'yes')? 'selected' : ''}}>دارد</option>
-                                                    <option value="no" {{(old('upload_and_cut_in_place') == 'no')? 'selected' : ''}}>ندارد</option>
+                                                    <option
+                                                        value="yes" {{(old('upload_and_cut_in_place') == 'yes')? 'selected' : ''}}>
+                                                        دارد
+                                                    </option>
+                                                    <option
+                                                        value="no" {{(old('upload_and_cut_in_place') == 'no')? 'selected' : ''}}>
+                                                        ندارد
+                                                    </option>
                                                 </select>
                                                 @error('upload_and_cut_in_place')
-                                                <span style="font-size: 12px;font-weight: bold;color: #dc3545">{{$message}}</span>
+                                                <span
+                                                    style="font-size: 12px;font-weight: bold;color: #dc3545">{{$message}}</span>
                                                 @enderror
                                             </div>
                                             <div class="col-sm-3" style="padding-top: 20px">
@@ -436,11 +453,18 @@
                                                         style="border: 1px solid #dc3545"
                                                     @enderror>
                                                     <option selected>انتخاب کنید</option>
-                                                    <option value="yes" {{(old('in_well_vibration_test') == 'yes')? 'selected' : ''}}>دارد</option>
-                                                    <option value="no" {{(old('in_well_vibration_test') == 'no')? 'selected' : ''}}>ندارد</option>
+                                                    <option
+                                                        value="yes" {{(old('in_well_vibration_test') == 'yes')? 'selected' : ''}}>
+                                                        دارد
+                                                    </option>
+                                                    <option
+                                                        value="no" {{(old('in_well_vibration_test') == 'no')? 'selected' : ''}}>
+                                                        ندارد
+                                                    </option>
                                                 </select>
                                                 @error('in_well_vibration_test')
-                                                <span style="font-size: 12px;font-weight: bold;color: #dc3545">{{$message}}</span>
+                                                <span
+                                                    style="font-size: 12px;font-weight: bold;color: #dc3545">{{$message}}</span>
                                                 @enderror
                                             </div>
                                             <div class="col-sm-3" style="padding-top: 20px">
@@ -452,11 +476,17 @@
                                                         style="border: 1px solid #dc3545"
                                                     @enderror>
                                                     <option selected>انتخاب کنید</option>
-                                                    <option value="yes" {{(old('bedrock') == 'yes')? 'selected' : ''}}>بله</option>
-                                                    <option value="no" {{(old('bedrock') == 'no')? 'selected' : ''}}>خیر</option>
+                                                    <option
+                                                        value="yes" {{(old('bedrock') == 'yes')? 'selected' : ''}}>
+                                                        بله
+                                                    </option>
+                                                    <option
+                                                        value="no" {{(old('bedrock') == 'no')? 'selected' : ''}}>خیر
+                                                    </option>
                                                 </select>
                                                 @error('bedrock')
-                                                <span style="font-size: 12px;font-weight: bold;color: #dc3545">{{$message}}</span>
+                                                <span
+                                                    style="font-size: 12px;font-weight: bold;color: #dc3545">{{$message}}</span>
                                                 @enderror
                                             </div>
                                             <div class="col-sm-3" style="padding-top: 20px">
@@ -468,11 +498,18 @@
                                                         style="border: 1px solid #dc3545"
                                                     @enderror>
                                                     <option selected>انتخاب کنید</option>
-                                                    <option value="yes" {{(old('drilling_surcharge') == 'yes')? 'selected' : ''}} >دارد</option>
-                                                    <option value="no" {{(old('drilling_surcharge') == 'no"')? 'selected' : ''}} >ندارد</option>
+                                                    <option
+                                                        value="yes" {{(old('drilling_surcharge') == 'yes')? 'selected' : ''}} >
+                                                        دارد
+                                                    </option>
+                                                    <option
+                                                        value="no" {{(old('drilling_surcharge') == 'no"')? 'selected' : ''}} >
+                                                        ندارد
+                                                    </option>
                                                 </select>
                                                 @error('drilling_surcharge')
-                                                <span style="font-size: 12px;font-weight: bold;color: #dc3545">{{$message}}</span>
+                                                <span
+                                                    style="font-size: 12px;font-weight: bold;color: #dc3545">{{$message}}</span>
                                                 @enderror
                                             </div>
                                             <div class="col-sm-3" style="padding-top: 20px">
@@ -484,18 +521,31 @@
                                                         style="border: 1px solid #dc3545"
                                                     @enderror>
                                                     <option selected>انتخاب کنید</option>
-                                                    <option value="Cash" {{(old('number_of_payment') == 'Cash')? 'selected' : ''}}>به صورت نقدی</option>
-                                                    <option value="One_Installment" {{(old('number_of_payment') == 'One_Installment' )? 'selected' : ''}}>یک قسط</option>
-                                                    <option value="Two_Installment" {{(old('number_of_payment') == 'Two_Installment' )? 'selected' : ''}}>دو قسط</option>
-                                                    <option value="Three_Installment" {{(old('number_of_payment') == 'Three_Installment' )? 'selected' : ''}}>سه قسط</option>
+                                                    <option
+                                                        value="Cash" {{(old('number_of_payment') == 'Cash')? 'selected' : ''}}>
+                                                        به صورت نقدی
+                                                    </option>
+                                                    <option
+                                                        value="One_Installment" {{(old('number_of_payment') == 'One_Installment' )? 'selected' : ''}}>
+                                                        یک قسط
+                                                    </option>
+                                                    <option
+                                                        value="Two_Installment" {{(old('number_of_payment') == 'Two_Installment' )? 'selected' : ''}}>
+                                                        دو قسط
+                                                    </option>
+                                                    <option
+                                                        value="Three_Installment" {{(old('number_of_payment') == 'Three_Installment' )? 'selected' : ''}}>
+                                                        سه قسط
+                                                    </option>
                                                 </select>
                                                 @error('number_of_payment')
-                                                <span style="font-size: 12px;font-weight: bold;color: #dc3545">{{$message}}</span>
+                                                <span
+                                                    style="font-size: 12px;font-weight: bold;color: #dc3545">{{$message}}</span>
                                                 @enderror
                                             </div>
                                         </div>
-                                    </div>
-                                </div> <!-- end row -->
+                                    </div> <!-- end row -->
+                                </div>
                             </div>
                         </div>
                     </div>
