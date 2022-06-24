@@ -29,6 +29,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'admin', 'middleware' => 'auth
 
         Route::get('/','GeotechnicsController@index')->name('admin.geotechnics');
         Route::get('/create', 'GeoTechnicsController@create')->name('admin.geotechnics.create');
+
         Route::post('/store', 'GeoTechnicsController@store')->name('admin.geotechnics.store');
 
         Route::get('/complete-register/{geotechnic}', 'GeotechnicsController@completeRegister')->name('admin.geotechnics.complete-register');

@@ -7,15 +7,17 @@ use App\Models\Geotechnic;
 use App\Models\Installment;
 use App\Models\Owner;
 use App\Models\TwoFactorAuthentication;
+use App\Traits\SendSms;
 use App\Traits\Uploder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
 class GeoTechnicsController extends Controller
 {
-    use Uploder;
+    use SendSms, Uploder;
 
     public function index()
     {
@@ -23,7 +25,6 @@ class GeoTechnicsController extends Controller
 
         return view('admin.geotechnics.index', compact('geotechnics'));
     }
-
 
     public function create()
     {
@@ -43,19 +44,6 @@ class GeoTechnicsController extends Controller
 
         // validation fields
         $this->validateForm($request);
-
-
-
-        // check upload files
-//        $written_request_of_bore_number = "";
-//        if($request->has('written_request_of_bore_number'))
-//        {
-//
-//            $written_request_of_bore_number = $this->uploadFile('/geotechnics/documents','');
-//        }
-
-
-
 
         $data = [
             'user_id' => auth()->user()->id,
@@ -77,6 +65,7 @@ class GeoTechnicsController extends Controller
             'number_of_payment' => $request->post('number_of_payment'),
         ];
 
+
         $cost_of_studies = $this->calCulateCostOfStudeis($data);
         $data['cost_of_studies'] = $cost_of_studies;
 
@@ -88,6 +77,8 @@ class GeoTechnicsController extends Controller
 
         $geotechnic = Geotechnic::create($data);
 
+
+        //  calculate installments section
         $this->CalculateInstallment($geotechnic);
 
 
@@ -102,6 +93,7 @@ class GeoTechnicsController extends Controller
         $membership_installments = $geotechnic->installments->where('type', Installment::MEMBERSHIP);
         return view('admin.geotechnics.complete-register', compact('geotechnic', 'studies_installments', 'membership_installments'));
     }
+
 
     public function completeRegisteStore(Request $request, Geotechnic $geotechnic)
     {
@@ -136,10 +128,10 @@ class GeoTechnicsController extends Controller
         $owner = $geotechnic->owner()->create($data);
 
         if ($owner instanceof Owner)
-            return redirect()->route('admin.dashboard')->with(['geotechnic-created-success' => 'ثبت پرونده ژئوتکنیک شما با موفقیت انجام شد']);
-
+            return redirect()->route('admin.geotechnics')->with(['geotechnic-created-success' => 'ثبت پرونده ژئوتکنیک شما با موفقیت انجام شد']);
 
     }
+
 
     private function validateForm(Request $request)
     {
@@ -153,16 +145,16 @@ class GeoTechnicsController extends Controller
             'number_of_machine_boreholes' => ['required'],
             'machine_bore_depth' => ['required_if:bedrock,no'],
             'number_of_manual_wells' => ['required'],
-            'manual_well_depth' => ['required'],
-            'guard_structure' => ['required'],
-            'upload_and_cut_in_place' => ['required'],
-            'in_well_vibration_test' => ['required'],
-            'bedrock' => ['required'],
-            'drilling_surcharge' => ['required'],
-            'number_of_payment' => ['required'],
-        ],[
-            '*.required' => 'فیلد الزامی است',
-            'type_of_land.in' => 'مقدار فیلد صحیح نمیباشد'
+            'manual_well_depth' => ['required_if:number_of_manual_wells,gt:0'],
+            'guard_structure' => ['required', Rule::in(['yes', 'no'])],
+            'upload_and_cut_in_place' => ['required', Rule::in(['yes', 'no'])],
+            'in_well_vibration_test' => ['required', Rule::in(['yes', 'no'])],
+            'bedrock' => ['required', Rule::in(['yes', 'no'])],
+            'drilling_surcharge' => ['required', Rule::in(['yes', 'no'])],
+            'number_of_payment' => ['required', Rule::in(['Cash', 'One_Installment', 'Two_Installment', 'Three_Installment'])],
+        ], [
+            'type_of_land.in' => 'مقدار فیلد صحیح نمیباشد',
+            '*.in' => 'یکی از گزینه ها را انتخاب کنید'
         ]);
 
     }
@@ -200,7 +192,9 @@ class GeoTechnicsController extends Controller
             $cost_of_membership += array_sum($data['machine_bore_depth']) * $this->getLandPriceByType($data['type_of_land']);
 
         // #2
-        $cost_of_membership += array_sum($data['machine_bore_depth']) * 250000;
+        if (!is_null($data['machine_bore_depth']))
+            $cost_of_membership += array_sum($data['machine_bore_depth']) * 250000;
+
 
         // #3
         if ($data['in_well_vibration_test'] == 'yes')
@@ -210,6 +204,7 @@ class GeoTechnicsController extends Controller
         if ($data['upload_and_cut_in_place'] == 'yes')
             $cost_of_membership += 10000000;
 
+        // #5
         if ($data['drilling_surcharge'] == 'yes')
             $cost_of_membership += 2000000;
 

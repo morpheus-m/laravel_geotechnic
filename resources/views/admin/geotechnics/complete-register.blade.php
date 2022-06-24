@@ -188,8 +188,8 @@
                                                                         </thead>
                                                                         <tbody>
                                                                         <tr>
-                                                                            <td>دارد</td>
-                                                                            <td>2 قسط</td>
+                                                                            <td>{{($geotechnic['drilling_surcharge'] == 'yes')? 'دارد' : 'ندارد'}}</td>
+                                                                            <td>{{count($geotechnic->installments)}}</td>
 
                                                                         </tr>
                                                                         </tbody>
@@ -556,7 +556,7 @@
                                                                                value="{{old('code')}}"
                                                                                id="example-number-input">
                                                                         @error('code')
-                                                                        <span style="font-size: 12px;font-weight: bold;color: #dc3545">{{$message}}</span>
+                                                                         <span style="font-size: 12px;font-weight: bold;color: #dc3545">{{$message}}</span>
                                                                         @enderror
                                                                     </div>
                                                                 </div>

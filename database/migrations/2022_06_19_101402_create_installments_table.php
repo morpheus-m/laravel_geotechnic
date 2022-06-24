@@ -22,7 +22,6 @@ class CreateInstallmentsTable extends Migration
             $table->integer('amount');
             $table->string('type');
             $table->enum('status',['Paid','Unpaid','Expired']);
-
             $table->timestamps();
         });
     }

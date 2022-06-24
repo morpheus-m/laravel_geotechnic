@@ -12,6 +12,7 @@ class OwnersController extends Controller
 {
     use SendSms;
 
+
     public function verify(Request $request)
     {
         $response = [];
