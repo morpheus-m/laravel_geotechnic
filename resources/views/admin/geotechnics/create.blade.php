@@ -83,9 +83,9 @@
                 </div>
             </div>
         </div>
+        @include('layout.alert')
 
 
-       
 
         <div class="col-lg-12 col-md-12 col-sm-12 p-0">
             <div style="padding-right: 20px;padding-left: 20px;font-size: larger">
@@ -412,11 +412,7 @@
                                                 @error('guard_structure')
                                                 <span style="font-size: 12px;font-weight: bold;color: #dc3545">{{$message}}</span>
                                                 @enderror
-                                            </div>
                                             <div class="col-sm-3" style="padding-top: 20px">
-                                                <label>بارگزاری و برش برجا
-                                                    <span class="text-danger"> * </span>
-                                                </label>
                                                 <select class="custom-select" aria-label="upload_and_cut_in_place"
                                                         name="upload_and_cut_in_place"
                                                         @error('upload_and_cut_in_place')

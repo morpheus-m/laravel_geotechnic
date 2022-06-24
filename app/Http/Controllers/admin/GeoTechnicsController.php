@@ -108,7 +108,7 @@ class GeoTechnicsController extends Controller
             'registration_plate' => ['required'],
             'code' => ['required', Rule::exists('two_factor_authentications', 'code')->where('type', 'owner')]
         ], [
-            '*.required' => 'فیلد الرامی است',
+            '*.required' => 'فیلد :attribute الرامی است',
             'code.exists' => 'کد وارد شده صحیح نمیباشد',
         ]);
 
@@ -142,7 +142,7 @@ class GeoTechnicsController extends Controller
             'number_of_floors' => ['required'],
             'occupancy_level_downstairs' => ['required'],
             'number_of_underground_floors' => ['required'],
-            'number_of_machine_boreholes' => ['required'],
+            'number_of_machine_boreholes' => ['required','gt:0'],
             'machine_bore_depth' => ['required_if:bedrock,no'],
             'number_of_manual_wells' => ['required'],
             'manual_well_depth' => ['required_if:number_of_manual_wells,gt:0'],
@@ -191,9 +191,12 @@ class GeoTechnicsController extends Controller
         elseif ($data['bedrock'] == 'no')
             $cost_of_membership += array_sum($data['machine_bore_depth']) * $this->getLandPriceByType($data['type_of_land']);
 
+
         // #2
-        if (!is_null($data['machine_bore_depth']))
-            $cost_of_membership += array_sum($data['machine_bore_depth']) * 250000;
+        if (!is_null($data['manual_well_depth'])) {
+
+            $cost_of_membership += array_sum($data['manual_well_depth']) * 250000;
+        }
 
 
         // #3
