@@ -408,11 +408,11 @@
                                                                                    name="f_name" aria-label="f_name"
                                                                                    value="{{old('f_name')}}"
                                                                                    @error('f_name')
-                                                                                       style="border: 1px solid #dc3545"
-                                                                                    @enderror
+                                                                                   style="border: 1px solid #dc3545"
+                                                                                   @enderror
                                                                                    id="example-text-input5">
                                                                             @error('f_name')
-                                                                                <span style="font-size: 12px;font-weight: bold;color: #dc3545">{{$message}}</span>
+                                                                            <span style="font-size: 12px;font-weight: bold;color: #dc3545">{{$message}}</span>
                                                                             @enderror
                                                                         </div>
                                                                     </div>
@@ -539,8 +539,8 @@
                                                             <div class="col-sm-4" style="padding-top: 25px">
                                                                 <div>
                                                                     <button id="send_code"
-                                                                        class="btn btn-primary btn-block waves-effect waves-light"
-                                                                        type="submit">ارسال کد
+                                                                            class="btn btn-primary btn-block waves-effect waves-light"
+                                                                            type="submit">ارسال کد
                                                                     </button>
                                                                 </div>
                                                             </div>
@@ -556,7 +556,7 @@
                                                                                value="{{old('code')}}"
                                                                                id="example-number-input">
                                                                         @error('code')
-                                                                         <span style="font-size: 12px;font-weight: bold;color: #dc3545">{{$message}}</span>
+                                                                        <span style="font-size: 12px;font-weight: bold;color: #dc3545">{{$message}}</span>
                                                                         @enderror
                                                                     </div>
                                                                 </div>
